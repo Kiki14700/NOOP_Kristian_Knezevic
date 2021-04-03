@@ -17,3 +17,7 @@
 - baza podataka je je na Git Hub-u i potrebno je na računalu prije pokretanja napraviti instancu i dodati bazu podataka
 - podatci za prijavu nalaze se u kodu u klasi Controller u main metodi
 
+## *
+- preostali dio zahtjeva za minimalni projekt koji nisu napravljeni trenutno nisu na GitHub-u
+- njih sam planirao poslati kad projekt(aplikacija) u potpunosti bude zadovoljavao kriterije
+
