@@ -5,6 +5,11 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
+/**
+ * Klasa glavnog prozora(okvira) na kojemu se nalazi glavni pogled za prodaju i Menu Bar.
+ * @author Korisnik
+ *
+ */
 public class MainFrame extends JFrame{
 	
 	
@@ -21,16 +26,22 @@ public class MainFrame extends JFrame{
 		
 		initilizeCopms();
 		layoutComps();
-		
+	
 	}
 	
-	
+	/**
+	 * Metoda za inicijalizaciju pogleda koji se nalaze na MainFrame-u.
+	 */
 	private void initilizeCopms() {
 		
 		formPanel = new FormPanel();
 		menuBar = new MenuBar();
 		menuBar.setBackground(Color.DARK_GRAY);
 	}
+	
+	/**
+	 * Metoda za pozicioniranje komponenti tj. pogleda. 
+	 */
 	
 	private void layoutComps() {
 		setLayout(new BorderLayout());
@@ -39,6 +50,6 @@ public class MainFrame extends JFrame{
 	}
 	
 	
-	
+
 	
 }

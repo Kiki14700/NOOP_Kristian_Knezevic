@@ -14,6 +14,12 @@ import javax.swing.border.Border;
 
 import controller_pckg.Controller;
 
+/**
+ * Metoda za stvaranje pogleda za prijavu.
+ * U uvoj metodi inicijalizirani su, imenovani, pozicionirani i aktivirani elementi pogleda za prijavu.
+ * @author Kristian Knežević
+ *
+ */
 public class LoginPanel extends JPanel{
 	
 	private JLabel unameLbl;
@@ -36,6 +42,9 @@ public class LoginPanel extends JPanel{
 	
 	}
 	
+	/**
+	 * Metoda za kreiranje komponenti pogleda i njihovo imenovanje.
+	 */
 	private void createComps() {
 		unameLbl = new JLabel("Unesite ime");
 		unameTxt = new JTextField();
@@ -45,6 +54,9 @@ public class LoginPanel extends JPanel{
 		signupBtn = new JButton("Registriraj se");
 	}
 	
+	/**
+	 * Metoda za razmještaj komponenti.
+	 */
 	private void layoutComps() {
 		setLayout(null);
 		
@@ -63,6 +75,7 @@ public class LoginPanel extends JPanel{
 		add(passwordTxt);
 	}
 	
+	
 	private void setBorders() {
 
 		Border inner = BorderFactory.createTitledBorder("");
@@ -73,7 +86,14 @@ public class LoginPanel extends JPanel{
 
 	}
 	
+	/**
+	 * Metoda za aktivaciju komponenti pogleda za prijavu.
+	 * Aktivirani su botuni za prijavu korisnika i otvaranje panela za regitraciju novog korisnika.
+	 * Botun za prijavu nakon unosa podataka poziva metodu Login iz Controllera koja provejerava točnost podataka.
+	 */
+	
 	private void activate() {
+		
 		
 		loginBtn.addActionListener(new ActionListener() {
 			

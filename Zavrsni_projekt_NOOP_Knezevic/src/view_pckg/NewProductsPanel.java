@@ -22,7 +22,11 @@ import org.jdatepicker.impl.UtilDateModel;
 import controller_pckg.Controller;
 import model_pckg.Product;
 
-
+/**
+ * Klasa za stvaranje, razmještaj i aktivaciju komponenti pogleda "NewProductsPanel".
+ * @author Kristian Knežević
+ *
+ */
 public class NewProductsPanel extends JPanel{
 	
 	private JLabel productNameLbl;
@@ -51,6 +55,9 @@ public class NewProductsPanel extends JPanel{
 		
 	}
 	
+	/**
+	 * Metoda za kreiranje i imenovanje komponenti.
+	 */
 	private void createComps() {
 		productNameLbl = new JLabel("Naziv proizvoda");
 		productNameTxt = new JTextField();
@@ -71,6 +78,9 @@ public class NewProductsPanel extends JPanel{
 		datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	}
 	
+	/**
+	 * Metoda za dimenzioniranje i pozicioniranje elemenata pogleda.
+	 */
 	private void layoutComps() {
 		setLayout(null);
 		
@@ -101,6 +111,12 @@ public class NewProductsPanel extends JPanel{
 		confirmBtn.setBackground(Color.YELLOW);
 	}
 	
+	/**
+	 * Klasa koja postavlja format u JDatePicker.
+	 * 
+	 * @author Kristian Knezevic
+	 *
+	 */
 	public class DateLabelFormatter extends AbstractFormatter {
 
 		private String datePattern = "dd/MM/yyyy";
@@ -122,8 +138,11 @@ public class NewProductsPanel extends JPanel{
 		}
 
 	}
-
 	
+	/**
+	 * Metoda za aktivaciju botuna koji podatke o novom proizvodu preko Controllera šalje u bazu podataka.
+	 */
+
 	public void activate() {
 		
 		confirmBtn.addActionListener(new ActionListener() {

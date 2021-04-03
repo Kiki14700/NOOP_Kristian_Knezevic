@@ -1,5 +1,6 @@
 package view_pckg;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
@@ -10,7 +11,9 @@ import java.util.Calendar;
 import java.util.Properties;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -25,6 +28,11 @@ import controller_pckg.Controller;
 import model_pckg.User;
 import view_pckg.NewProductsPanel.DateLabelFormatter;
 
+/**
+ * Klasa za stvaranje panela(pogleda) na kojoj se nalaze elementi za registraciju novog korinsnika. 
+ * @author Kristian Knežević
+ *
+ */
 public class SignupPanel extends JPanel{
 	
 	private JLabel namelbl;
@@ -53,8 +61,12 @@ public class SignupPanel extends JPanel{
 		createComps();
 		layoutComps();
 		activate();
+		style();
 	}
 	
+	/**
+	 * Metoda za kreiranje i imenovanje komponenti prikazanih na pogledu.
+	 */
 	private void createComps() {
 		namelbl = new JLabel("Unesite ime");
 		nameTxt = new JTextField();
@@ -84,26 +96,29 @@ public class SignupPanel extends JPanel{
 		datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	}
 	
+	/**
+	 * Metoda za dimenzioniranje i razmještaj elemenata na pogledu.
+	 */
 	private void layoutComps() {
 		setLayout(null);
 		
-		namelbl.setBounds(193, 30, 100, 30);
-		nameTxt.setBounds(140, 70, 170, 30);
-		surnameLbl.setBounds(180, 140, 100, 30);
-		surnameTxt.setBounds(140, 180, 170, 30);
-		addressLbl.setBounds(180, 250, 100, 30);
-		addressTxt.setBounds(140, 290, 170, 30);
-		phoneNumLbl.setBounds(165, 360, 150, 30);
-		phoneNumTxt.setBounds(140, 400, 170, 30);
-		passwordLbl.setBounds(180, 470, 100, 30);
-		passwordTxt.setBounds(140, 510, 170, 30);
-		confirmPasswordLbl.setBounds(180, 580, 100, 30);
-		confirmPasswordTxt.setBounds(140, 620, 170, 30);
-		dateOfBirthLbl.setBounds(180, 690, 100, 30);
-		datePicker.setBounds(140, 730, 170, 30);
-		uNameLbl.setBounds(180, 800, 100, 30);
-		uNameTxt.setBounds(140, 840, 170, 30);
-		submitBtn.setBounds(160, 920, 130, 30);
+		namelbl.setBounds(80, 50, 100, 30);
+		nameTxt.setBounds(30, 90, 170, 30);
+		surnameLbl.setBounds(280, 50, 100, 30);
+		surnameTxt.setBounds(240, 90, 170, 30);
+		addressLbl.setBounds(490, 50, 100, 30);
+		addressTxt.setBounds(450, 90, 170, 30);
+		phoneNumLbl.setBounds(55, 270, 150, 30);
+		phoneNumTxt.setBounds(30, 310, 170, 30);
+		passwordLbl.setBounds(170, 160, 100, 30);
+		passwordTxt.setBounds(130, 200, 170, 30);
+		confirmPasswordLbl.setBounds(380, 160, 100, 30);
+		confirmPasswordTxt.setBounds(340, 200, 170, 30);
+		dateOfBirthLbl.setBounds(280, 270, 100, 30);
+		datePicker.setBounds(240, 310, 170, 30);
+		uNameLbl.setBounds(490, 270, 100, 30);
+		uNameTxt.setBounds(450, 310, 170, 30);
+		submitBtn.setBounds(260, 400, 130, 30);
 		
 		add(namelbl);
 		add(nameTxt);
@@ -123,6 +138,22 @@ public class SignupPanel extends JPanel{
 		add(uNameLbl);
 		add(uNameTxt);
 	}
+	
+	/**
+	 * Stilizacija pogleda i njegovih komponenti.
+	 */
+	
+	private void style() {
+		submitBtn.setBackground(Color.CYAN);
+		datePicker.setBackground(Color.CYAN);
+	}
+	
+	/**
+	 * Klasa koja postavlja format u JDatePicker
+	 * 
+	 * @author Kristian Knezevic
+	 *
+	 */
 	
 	public class DateLabelFormatter extends AbstractFormatter {
 
@@ -146,6 +177,9 @@ public class SignupPanel extends JPanel{
 
 	}
 	
+	/**
+	 * Metoda za aktivaciju botuna koji podatke o novom korisiku preko Controllera šalje u bazu podataka.
+	 */
 	private void activate() {
 		
 		submitBtn.addActionListener(new ActionListener() {
@@ -154,17 +188,25 @@ public class SignupPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				
 				java.util.Date selectedDate = (java.util.Date) datePicker.getModel().getValue();
-                
 				User user = new User();
-				user.name = nameTxt.getText();
-				user.surname = surnameTxt.getText();
-				user.address = addressTxt.getText();
-				user.phoneNum = Integer.parseInt(phoneNumTxt.getText());
-				user.setPassword(new String(passwordTxt.getPassword()));
-				user.dateOfBirth = selectedDate;
-				user.username = uNameTxt.getText();
 				
-				Controller.signup(user);
+				if(new String(confirmPasswordTxt.getPassword()).equals(new String(passwordTxt.getPassword()))) {
+					user.name = nameTxt.getText();
+					user.surname = surnameTxt.getText();
+					user.address = addressTxt.getText();
+					user.phoneNum = Integer.parseInt(phoneNumTxt.getText());
+					user.setPassword(new String(passwordTxt.getPassword()));
+					user.dateOfBirth = selectedDate;
+					user.username = uNameTxt.getText();
+					Controller.signup(user);
+				}else {
+					JOptionPane.showMessageDialog(new JFrame(), "Passwords do not match!");
+				}
+				
+				
+				
+				
+				
 				
 			}
 		});

@@ -4,6 +4,13 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+
+/**
+ * Klasa za stavranje prozora(okvira) na kojemu se nalazi pogled s komponentama koje omogućuju unos novog proizvoda.
+ * @author Kristian Knežević
+ *
+ */
+
 public class NewProductsForm extends JFrame{
 	
 	private NewProductsPanel newProductsPanel;
@@ -21,10 +28,16 @@ public class NewProductsForm extends JFrame{
 		layoutComps();
 	}
 	
+	/**
+	 * Metoda za inicijalizaciju pogleda.
+	 */
 	private void initializeComps() {
 		newProductsPanel = new NewProductsPanel();
 	}
 	
+	/**
+	 * Metoda za pozicioniranje pogleda.
+	 */
 	private void layoutComps() {
 		
 		setLayout(new BorderLayout());

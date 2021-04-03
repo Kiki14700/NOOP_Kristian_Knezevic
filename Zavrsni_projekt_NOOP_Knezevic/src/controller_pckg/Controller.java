@@ -1,4 +1,4 @@
-package controller_pckg;
+ package controller_pckg;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -41,12 +41,25 @@ import java.util.Dictionary;
 import java.util.HashMap;
 import java.sql.Statement;
 
+/**
+ * Glavna klasa cijele aplikacije koja upravlja sa svime što se događa između ostala dva dijela MVC-a, a to su model i pogled(view).
+ * Klasa Controller komunicira s bazom podataka odnosno omogućuje slanje podataka u bazu i njihovo dohvaćanje kako bi se sama aplikacija i korisnik njima služili. 
+ * Za lakše shvaćanje moglo bi se reći da Controller ustvari puni modele odgovarajućim podatcima iz baze podataka te ih stavlja na odgovarajući pogled, ali također na zahtjev korisnika izmjenjuje podatke u modelima te ih vraća u bazu podataka.
+ * @author Kristian Knežević
+ *
+ */
 public class Controller {
 	
 	static Connection conn;
 	private static SignupForm currentSignUpForm;
 	private static NewProductsForm currentProductForm;
 	public static User currentUser;
+	
+	/**
+	 * Main metoda za pokretanje aplikacije.
+	 * Prilikom pokretanja kao prvi view korisniku se prikazuje prozor za prijavu korisnika.
+	 * Također u Main metodi ostvaruje se i konekcija s bazom podataka.
+	 */
 	
 	public static void main(String[] args) throws SQLException {
 		
@@ -77,11 +90,9 @@ public class Controller {
 		});
 	}
 	
-	public void connect() throws SQLException {
-		
-	}
-	
-	
+	/**
+	 * Metoda za pokretanje pogleda(prozora) za registraciju novog korisnika.
+	 */
 	public static void registrationFormView() {
 		
 		SwingUtilities.invokeLater(new Runnable() {
@@ -94,6 +105,11 @@ public class Controller {
 			}
 		});
 	}
+	
+	/**
+	 * Metoda za pokretanje glavnog pogleda(prozora) u kojemu se vrši stvaranje računa.
+	 * Glavni pogled daje mogućnost pristupa ostalim pogledima(dijagram, pregled korisnika i prometa).
+	 */
 	
 	public static void mainframeView() {
 		
@@ -110,6 +126,11 @@ public class Controller {
 	
 	}
 	
+	/**
+	 * Metoda za pokretanje pogleda(prozora) s podatcima korisnika čiji podatci su pohranjeni u bazi podataka.
+	 * To su svi korisinici koji imaju pravo prijave.
+	 */
+	
 	public static void employeesView() {
 		
 		SwingUtilities.invokeLater(new Runnable() {
@@ -123,6 +144,11 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Metoda za pokretanje pogleda(prozora) za grafički prikaz kretanja prometa.
+	 * U tom pogledu vidiljiv je linijski grafikon ukupne prodaje po svakom datum u kojemu je ostvarena bilo kakva dobit. 
+	 */
+	
 	public static void chartView() {
 		
 		SwingUtilities.invokeLater(new Runnable() {
@@ -134,6 +160,10 @@ public class Controller {
 			}
 		});
 	}
+	
+	/**
+	 * Metoda za pokretanje pogleda(prozora) za unos novih proizvoda u bazu.
+	 */
 	
 	public static void newProductsView() {
 		
@@ -148,7 +178,13 @@ public class Controller {
 		
 	}
 	
-	
+	/**
+	 * Metoda koja omogućuje registriranim korisnicima da se prijave u aplikaciju.
+	 * Uspoređuju se uneseni podatci s onima u bazi.
+	 * Točnije provjerava se odgovaraju li uneseno korisničko ime i lozinka onima u bazi podataka.
+	 * Ako je sve uredu s podatcima za prijavu korisnik može pristupiti glavnom pogledu aplikacije, a ako podatci nisu točni korisnik je obaviješten da podatci za prijavu nisu ispravni.
+	 * 
+	 */
 	public static void login(String username, String password) {
 		
 		String q = "SELECT password FROM Users WHERE uname = \"" + username + "\";";
@@ -178,6 +214,12 @@ public class Controller {
 		currentUser =  getUserByUsername(username);
 	
 	}
+	
+	/**
+	 * Metoda koja omogućuje novim korisnicima da se registriraju.
+	 * Uneseni podatci o korisniku šalju se u bazu podataka, a ako je s registracijom sve uredu korisnik se preusmjerava na pogled za prijavu.
+	 * Podatci se unose u tablicu pod nazivom "Users".
+	 */
 	
 	public static void signup(User user) {
 		
@@ -212,6 +254,11 @@ public class Controller {
 	
 	}
 	
+	/**
+	 * Metoda koja omogućuje unos novih proizvoda u bazu podataka.
+	 * Za novi proizvod potrebno je unijeti naziv, cijenu, količinu u kojoj dolazi te datum unosa.
+	 * Podatci se unose u tablicu pod nazivom "Product".
+	 */
 	public static void inputProducts(Product product) {
 		
 		if(conn != null) {
@@ -239,24 +286,12 @@ public class Controller {
 		
 	}
 	
-	public static int getProductByName(String name) {
-		
-		if(conn != null) {
-			String q = "SELECT id FROM Product WHERE name = \"" + name + "\";";
-			int id = 0;
-			try {
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(q);
-				while(rs.next())
-					id = rs.getInt("id");
-			}catch (Exception e) {
-				JOptionPane.showMessageDialog(new JFrame(), "Invalid connection!!!");
-				e.printStackTrace();
-			}
-			return id;
-		}
-		return 0;
-	}
+
+	
+	/**
+	 * Metoda za dohvaćanje korisnika iz baze podataka na temelju unesenog korisničkog imena.
+	 * Također pretpostavlja se da je korisničko ime jedinstveno pa se dohvaća samo prvi registrirani korisnik s tim korisničkim imenom iz baze podataka.
+	 */
 	
 	public static User getUserByUsername(String username) {
 		
@@ -282,6 +317,10 @@ public class Controller {
 		return null;
 	}
 	
+	/**
+	 * Metoda za dohvaćanje traženog proizvoda iz baze podataka po unesenoj identifikacijskoj oznaci(id).
+	 */
+	
 	public static Product getPorductById(int id) {
 		
 		if(conn != null) {
@@ -304,6 +343,10 @@ public class Controller {
 		}
 		return null;
 	}
+	
+	/**
+	 * Metoda za dohvaćanje traženog proizvoda iz baze podataka po unesenom imenu proizvoda.
+	 */
 	
 	public static Product getPorductByName(String name) {
 		
@@ -329,9 +372,14 @@ public class Controller {
 	}
 	
 	
+	/**
+	 * Metoda koja omogućuje unos podataka o stvorenom računu u bazu podataka.
+	 * Podatci se unose u dvije tablice pod nazivom "Bill" i "Bought_products".
+	 * Unos podataka u dvije tablice o računu potreban je iz razloga vezanog za samu SQL organizaciju podataka unutar tablica.
+	 * Tablica "Bill" koristi se za unesene račune, a tablica "Bought products" za kupljene proizvode.
+	 */
+	
 	public static void inputBill(Bill bill) {
-		
-		
 		
 		if(conn != null) {
 			String q = "insert into bill (dateOfPrint, userId , buyerName, paymentMethod, finalPrice) values (?,?,?,?,?)";
@@ -378,6 +426,13 @@ public class Controller {
 		
 		
 	}
+	
+	/**
+	 * Metoda koja dohvaća podatke o prometu iz baze podataka kako bi se mogli grafički prikazati.
+	 * Dohvaćeni podatci spremaju se u Hash Map koja dozvoljava organizaciju podataka po principu ključ vrijednost.
+	 * Ključ je u ovom slučaju datum kao jedinstvena vrijednost za koju se sprema ukupan prihod toga datuma.
+	 * Grafikon unutar aplikacije izrađen je "from scratch", korišteni su elementi poput ImageIcon, BufferedImage i JOptionPane. 
+	 */
 	
 	public static void showChart() {
 		
@@ -473,6 +528,44 @@ public class Controller {
 		
 		
 	}
+	
+	/**
+	 * Metoda koja dohvaća podatke o korisnicima i sprema ih u listu kako bi kasnije mogli biti prikazani u tablici.
+	 */
+	
+	public static ArrayList<User> getUser() {
+		
+		ArrayList<User> userList = new ArrayList<>();
+		String q = "SELECT id, name, surname, dateOfBirth, address, phoneNum, uname FROM users ;";
+		
+		if(conn != null) {
+			
+			try {
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(q);
+				User user;
+				
+				while(rs.next()) {
+					user = new User(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getDate("dateOfBirth"),
+							rs.getString("address"), rs.getInt("phoneNum"), rs.getString("uname"));
+					
+					userList.add(user);
+				}
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(new JFrame(), "Invalid connection!!!");
+				e.printStackTrace();
+			}
+			
+			
+		return userList;
+		
+	}
+		return null;
+	
+		}
+	
+	
+	
 	
 	
 	

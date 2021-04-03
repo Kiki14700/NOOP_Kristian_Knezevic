@@ -1,7 +1,17 @@
 eclipse.preferences.version=1
 encoding//src/controller_pckg/Controller.java=UTF-8
+encoding//src/model_pckg/Bill.java=UTF-8
+encoding//src/model_pckg/BoughtProduct.java=UTF-8
+encoding//src/model_pckg/Chart.java=UTF-8
+encoding//src/model_pckg/Product.java=UTF-8
+encoding//src/model_pckg/User.java=UTF-8
 encoding//src/view_pckg/EmployeesForm.java=UTF-8
 encoding//src/view_pckg/FormPanel.java=UTF-8
+encoding//src/view_pckg/LoginForm.java=UTF-8
+encoding//src/view_pckg/LoginPanel.java=UTF-8
 encoding//src/view_pckg/MainFrame.java=UTF-8
+encoding//src/view_pckg/MenuBar.java=UTF-8
+encoding//src/view_pckg/NewProductsForm.java=UTF-8
 encoding//src/view_pckg/NewProductsPanel.java=UTF-8
+encoding//src/view_pckg/SignupForm.java=UTF-8
 encoding//src/view_pckg/SignupPanel.java=UTF-8

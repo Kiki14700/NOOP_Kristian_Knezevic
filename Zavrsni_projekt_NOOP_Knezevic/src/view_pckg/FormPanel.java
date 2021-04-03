@@ -2,6 +2,7 @@ package view_pckg;
 
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -39,7 +40,11 @@ import model_pckg.Product;
 
 
 
-
+/**
+ * U klasi FormPanel stvoreni su i aktivirani elementi glavnog pogleda u kojem se odvija prodaja proizvoda.
+ * Klasa omogućuje izradu računa, spremanje računa u bazu podataka(obavlja Controller) i ispis računa(pomoću pisača).
+ * @author Kristian Knežević
+ */
 
 public class FormPanel extends JPanel{
 	
@@ -58,7 +63,7 @@ public class FormPanel extends JPanel{
 	private JButton dodajBtn;
 	private JButton potvrdiBtn;
 	private JButton ispisiBtn;
-	
+	private JButton obrisiBtn;
 	private JComboBox<String> opisPlacanjaComboBox;;
 	private DefaultComboBoxModel<String> opisPlacanja;
 	
@@ -81,6 +86,10 @@ public class FormPanel extends JPanel{
 		activate();
 	}
 	
+	
+	/**
+	 * Metoda za stvaranje naslova i obruba oko lijeve strane pogleda
+	 */
 	private void setBorders() {
 
 		Border inner = BorderFactory.createTitledBorder("Kupnja");
@@ -91,7 +100,9 @@ public class FormPanel extends JPanel{
 
 	}
 	
-	
+	/**
+	 * Metoda za inicijalizaciju i imenovanje komponenti koje će biti prikazane na samom pogledu.
+	 */
 	private void createComps() {
 		txtArea = new JTextArea();
 		proizvodiLbl = new JLabel("Proizvodi");
@@ -107,7 +118,7 @@ public class FormPanel extends JPanel{
 		ispisiBtn = new JButton("Ispiši");
 		opisPlacanjaComboBox = new JComboBox<>();
 		opisPlacanja = new DefaultComboBoxModel<>();
-		
+		obrisiBtn = new JButton("Obriši");
 	
 		
 		
@@ -115,6 +126,10 @@ public class FormPanel extends JPanel{
 		
 		
 	}
+	
+	/**
+	 * Metoda za razmještaj komponenti na pogledu te postavljanje dimenzija samih komponenti.
+	 */
 	
 	private void layoutComps() {
 		setLayout(null);
@@ -129,9 +144,9 @@ public class FormPanel extends JPanel{
 		opisPlacanjaLbl.setBounds(250, 290, 150, 15);
 		kupacTxt.setBounds(40, 320, 130, 30);
 		
-		potvrdiBtn.setBounds(120, 490, 150, 30);
+		potvrdiBtn.setBounds(120, 420, 150, 30);
 		ispisiBtn.setBounds(490, 500, 150, 30);
-		
+		obrisiBtn.setBounds(120, 490, 150, 30);;
 		
 		
 		opisPlacanjaComboBox.setBounds(230, 320, 130, 30);
@@ -155,12 +170,17 @@ public class FormPanel extends JPanel{
 		
 		add(potvrdiBtn);
 		add(ispisiBtn);
-		
+		add(obrisiBtn);
 	}
 	
-	
+	/**
+	 * Metoda za aktivaciju komponenti pogleda.
+	 */
 	
 	private void activate() {
+		
+		// Dohvaćanje proizvoda po unesenom imenu.
+		
 		
 		dodajBtn.addActionListener(new ActionListener() {
 			
@@ -170,13 +190,17 @@ public class FormPanel extends JPanel{
 				BoughtProduct bp = new BoughtProduct();
 				bp.productId = pr.id;
 				bp.quantity = Integer.parseInt(kolicinaTxt.getText());
+				//lista kupljenih proizvoda 
 				bill.boughtproducts.add(bp);
+				//dohvaćanje trenutnog datuma
 				if(bill.dateOfPrint == null) {
 					bill.dateOfPrint = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 				}
 				txtArea.setText(bill2Text(bill));
 			}
 		});
+		
+		
 		
 		potvrdiBtn.addActionListener(new ActionListener() {
 			
@@ -189,6 +213,7 @@ public class FormPanel extends JPanel{
 				
 			}
 		});
+		
 		
 		ispisiBtn.addActionListener(new ActionListener() {
 			
@@ -206,7 +231,20 @@ public class FormPanel extends JPanel{
 				
 			}
 		});
+		
+		obrisiBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				deleteBill4Panel();
+				
+			}
+		});
 	}
+	
+	/**
+	 * 
+	 */
 	
 	private String bill2Text(Bill b) {
 		String txt = "";
@@ -216,12 +254,14 @@ public class FormPanel extends JPanel{
 		txt += "**************************************************\n";
 		txt += "**************************************************\n";
 		txt += "\nProizvod\tKoličina\tCijena\n";
+		
 		for(BoughtProduct bop : b.boughtproducts) {
 			Product pr = Controller.getPorductById(bop.productId);
 			txt += "\n" + pr.name + "\t" + bop.quantity + "\t" + (bop.quantity * pr.price);
 			price += bop.quantity * pr.price;
 		}
 		txt += "\n**************************************************\n";
+		//upit za provjeru je li korisnik sustava unio ime u tekstualno polje za unos imena kupca ili je slučajno stisnuo gumb
 		if(!bill.buyerName.equals("")) {
 			txt += "\n\nKupac : " + bill.buyerName + "\nOpis plaćanja : " + bill.paymentMethod;
 		}
@@ -232,6 +272,11 @@ public class FormPanel extends JPanel{
 		return txt;
 	}
 	
+	
+	private void deleteBill4Panel() {
+		
+		txtArea.setText("");
+	}
 	
 
 }

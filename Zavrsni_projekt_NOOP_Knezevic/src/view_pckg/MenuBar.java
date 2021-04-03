@@ -16,6 +16,11 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import controller_pckg.Controller;
 import model_pckg.Product;
 
+/**
+ * Klasa s padajućim izbornikom u kojemu se nalaze botuni koji korisnika vode do uvida u djelatnike, kretanje prometa te mogućnosti za unos novih proizvoda.
+ * @author Korisnik
+ *
+ */
 public class MenuBar extends JPanel{
 	
 	private JMenuBar menuBar;
@@ -32,16 +37,21 @@ public class MenuBar extends JPanel{
 		
 		
 	}
-	
+	/**
+	 * Metoda za inicijalizaciju komponenti
+	 */
 	public void initializeComps() {
 		
 		menuBar = new JMenuBar();
-		menuEdit = new JMenu("Vi�e");
+		menuEdit = new JMenu("Više");
 		djelatniciBtn = new JMenuItem("Djelatnici");
 		prometBtn = new JMenuItem("Kretanje prometa");
 		unosProizvodaBtn = new JMenuItem("Unos proizvoda");
 	}
 	
+	/**
+	 * Metoda za dodavanje botuna u izbornik pod nazivom "Više".
+	 */
 	public void addComps() {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		menuBar.add(menuEdit);
@@ -52,6 +62,11 @@ public class MenuBar extends JPanel{
 		
 		
 	}
+	
+	/**
+	 * Metoda za aktivaciju botuna.
+	 * Botun djelatnici vodi korisnika do uvida u djeltanike, botun promet do grafa koji prikazuje kretanje prometa po datumima, a botun unos proizvoda do mogućnosti za unos novih prizvoda u bazu podataka.
+	 */
 	
 	public void activate() {
 		
