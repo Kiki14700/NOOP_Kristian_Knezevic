@@ -18,6 +18,7 @@
 - podatci za prijavu nalaze se u kodu u klasi Controller u main metodi
 
 ## *
-- preostali dio zahtjeva za minimalni projekt koji nisu napravljeni trenutno nisu na GitHub-u
-- njih sam planirao poslati kad projekt(aplikacija) u potpunosti bude zadovoljavao kriterije
+- preostali dio zahtjeva za minimalni projekt koji trenutno nisu na GitHub-u mislio sam naknadno commitati kada projekt(aplikacija) bude zadovoljavao sve kriterije
+- ako je potrebno bit će izrađeni i prije
+
 
