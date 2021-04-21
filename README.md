@@ -5,20 +5,20 @@
 - prilikom registriranja korisnik mora unijeti tražene podatke i potvrditi lozinku
 - ako je s podatcima za prijavu sve uredu korisik se može prijaviti
 - nakon prijave korisnik pristupa glavnom pogledu gdje se vrši prodaja proizvoda
-- također na glavnom pogledu nalazi se padajući izbornik koji nudi korisniku otvranje 3 preostala pogleda
-- preostali pogledi vode korisnika do unosa novih proizvoda, uvida u djelatnike ili uvida u kretanje prometa po datumima kada je ostvarena bilo kakva dobit
+- također na glavnom pogledu nalaze se dva padajuća izbornika
+- u prvom padajućem izborniku korisnik ima mogućnost unosa novog proizvoda, pregled djelatnika i grafičkog kretanja prometa
+- drugi padajući izbornik nudi korisniku uvid u prodaju za određeni period, prikaz podataka o svakom pojedinom proizvodu i kupcu
 - projekt je izrađen po MVC principu
+- više infomacija o projektu nalazi se u mapi "Opis projekta i skice"
 
-## Dokumentacija
-- napisana, ali jos uvijek nije izrađena uz pomoć Javadoc
+## API
+- napravljen korištenjem javadoc-a
 
 ## Baza podataka(MySql)
 - izrađeno lokalno jer je https://www.freemysqlhosting.net/ zahtjevao plaćanje nakon 7 dana
 - baza podataka je je na Git Hub-u i potrebno je na računalu prije pokretanja napraviti instancu i dodati bazu podataka
 - podatci za prijavu nalaze se u kodu u klasi Controller u main metodi
 
-## *
-- preostali dio zahtjeva za minimalni projekt koji trenutno nisu na GitHub-u mislio sam naknadno commitati kada projekt(aplikacija) bude zadovoljavao sve kriterije
-- ako je potrebno bit će izrađeni i prije
+
 
 
