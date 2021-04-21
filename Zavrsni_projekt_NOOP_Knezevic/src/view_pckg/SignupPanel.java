@@ -30,7 +30,7 @@ import view_pckg.NewProductsPanel.DateLabelFormatter;
 
 /**
  * Klasa za stvaranje panela(pogleda) na kojoj se nalaze elementi za registraciju novog korinsnika. 
- * @author Kristian Knežević
+ * @author Kristian Knezevic
  *
  */
 public class SignupPanel extends JPanel{
@@ -80,9 +80,9 @@ public class SignupPanel extends JPanel{
 		passwordTxt = new JPasswordField();
 		confirmPasswordLbl = new JLabel("Potvrda lozinke");
 		confirmPasswordTxt = new JPasswordField();
-		dateOfBirthLbl = new JLabel("Datum rođenja");
+		dateOfBirthLbl = new JLabel("Datum rodenja");
 		
-		uNameLbl = new JLabel("Korisničko ime");
+		uNameLbl = new JLabel("Korisnicko ime");
 		uNameTxt = new JTextField();
 		submitBtn = new JButton("Potvrdi");
 		
@@ -97,7 +97,7 @@ public class SignupPanel extends JPanel{
 	}
 	
 	/**
-	 * Metoda za dimenzioniranje i razmještaj elemenata na pogledu.
+	 * Metoda za dimenzioniranje i razmjestaj elemenata na pogledu.
 	 */
 	private void layoutComps() {
 		setLayout(null);
@@ -178,10 +178,12 @@ public class SignupPanel extends JPanel{
 	}
 	
 	/**
-	 * Metoda za aktivaciju botuna koji podatke o novom korisiku preko Controllera šalje u bazu podataka.
+	 * Metoda za aktivaciju botuna koji podatke o novom korisiku preko Controllera salje u bazu podataka.
 	 */
 	private void activate() {
 		
+		
+			
 		submitBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -190,7 +192,14 @@ public class SignupPanel extends JPanel{
 				java.util.Date selectedDate = (java.util.Date) datePicker.getModel().getValue();
 				User user = new User();
 				
-				if(new String(confirmPasswordTxt.getPassword()).equals(new String(passwordTxt.getPassword()))) {
+				if(nameTxt.getText().equals("") || surnameTxt.getText().equals("") || addressTxt.getText().equals("") || 
+						phoneNumTxt.getText().equals("") || passwordTxt.getPassword().equals("") || uNameTxt.getText().equals("") )  {
+					JOptionPane.showMessageDialog(new JFrame(), "Niste popunili sva polja!");
+				}else {
+				
+				if(Controller.getUserByUsername(uNameTxt.getText()) != null) {
+					JOptionPane.showMessageDialog(new JFrame(), "Korisnik sa unesenim korisnickim imenom vec postoji!");
+				}else if(new String(confirmPasswordTxt.getPassword()).equals(new String(passwordTxt.getPassword()))) {
 					user.name = nameTxt.getText();
 					user.surname = surnameTxt.getText();
 					user.address = addressTxt.getText();
@@ -200,16 +209,14 @@ public class SignupPanel extends JPanel{
 					user.username = uNameTxt.getText();
 					Controller.signup(user);
 				}else {
-					JOptionPane.showMessageDialog(new JFrame(), "Passwords do not match!");
+					JOptionPane.showMessageDialog(new JFrame(), "Lozinke se ne podudaraju!");
 				}
 				
-				
-				
-				
-				
-				
 			}
+			}
+		
 		});
+		
 	}
 	
 	

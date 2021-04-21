@@ -2,9 +2,9 @@ package model_pckg;
 
 /**
  * Model kupljenog proizvoda.
- * Jedan model uparuje proizvod i račun na kojem je izdan po identifikacijskim oznakama(id) te zapisuje koliko komada proizvoda je kupljeno(quantity).
- * Jedan račun ima isti bill_id pa ćemo znati koji su kupljeni proizvodi(prepoznajemo ih po product_id) na kojem računu.
- * @author Kristian Knežević
+ * Jedan model uparuje proizvod i racun na kojem je izdan po identifikacijskim oznakama(id) te zapisuje koliko komada proizvoda je kupljeno(quantity).
+ * Jedan racun ima isti bill_id pa cemo znati koji su kupljeni proizvodi(prepoznajemo ih po product_id) na kojem racunu.
+ * @author Kristian Knezevic
  *
  */
 public class BoughtProduct {

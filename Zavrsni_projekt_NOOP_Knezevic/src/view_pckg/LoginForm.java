@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 /**
  * Metoda za kreiranje forme(okvira) na kojoj se nalazi pogled s komponentama za prijavu korisnika.
- * @author Kristian Knežević
+ * @author Kristian Knezevic
  *
  */
 
@@ -18,7 +18,7 @@ public class LoginForm extends JFrame{
 		
 		super("Login");
 		setSize(700, 550);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);

@@ -4,8 +4,8 @@ import java.sql.Date;
 
 /**
  * Model korisnika sustava(trgovca).
- * Svaki korisnik ime svoje ime i prezime, datum rođenja, adresu stanovanja, broj telefona te korisničko ime i šifru.
- * @author Kristian Knežević
+ * Svaki korisnik ime svoje ime i prezime, datum rodenja, adresu stanovanja, broj telefona te korisnicko ime i sifru.
+ * @author Kristian Knezevic
  *
  */
 public class User {

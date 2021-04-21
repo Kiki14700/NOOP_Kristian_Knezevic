@@ -10,7 +10,9 @@ import java.util.Calendar;
 import java.util.Properties;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField.AbstractFormatter;
@@ -23,7 +25,7 @@ import controller_pckg.Controller;
 import model_pckg.Product;
 
 /**
- * Klasa za stvaranje, razmještaj i aktivaciju komponenti pogleda "NewProductsPanel".
+ * Klasa za stvaranje, razmjestaj i aktivaciju komponenti pogleda "NewProductsPanel".
  * @author Kristian Knežević
  *
  */
@@ -61,7 +63,7 @@ public class NewProductsPanel extends JPanel{
 	private void createComps() {
 		productNameLbl = new JLabel("Naziv proizvoda");
 		productNameTxt = new JTextField();
-		measureLbl = new JLabel("Količina");
+		measureLbl = new JLabel("Kolicina");
 		measureTxt = new JTextField();
 		priceLbl = new JLabel("Cijena");
 		priceTxt = new JTextField();
@@ -140,7 +142,7 @@ public class NewProductsPanel extends JPanel{
 	}
 	
 	/**
-	 * Metoda za aktivaciju botuna koji podatke o novom proizvodu preko Controllera šalje u bazu podataka.
+	 * Metoda za aktivaciju botuna koji podatke o novom proizvodu preko Controllera salje u bazu podataka.
 	 */
 
 	public void activate() {
@@ -150,14 +152,22 @@ public class NewProductsPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				java.util.Date selectedDate = (java.util.Date) datePicker.getModel().getValue() ;
+				if(productNameTxt.getText().equals("") || priceTxt.getText().equals("") || measureTxt.getText().equals("")) {
+					JOptionPane.showMessageDialog(new JFrame(), "Niste popunili sva polja!");
+				}else {
+					
+					java.util.Date selectedDate = (java.util.Date) datePicker.getModel().getValue() ;
+					
+					product.name = productNameTxt.getText();
+					product.price = Double.parseDouble(priceTxt.getText());
+					product.measure = measureTxt.getText();
+					product.dateOfArrival = selectedDate;
+					
+					Controller.inputProducts(product);
+				}
 				
-				product.name = productNameTxt.getText();
-				product.price = Double.parseDouble(priceTxt.getText());
-				product.measure = measureTxt.getText();
-				product.dateOfArrival = selectedDate;
 				
-				Controller.inputProducts(product);
+			
 				
 			}
 		});

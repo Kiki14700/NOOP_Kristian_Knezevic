@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 /**
  * Klasa za stavranje prozora(okvira) na kojemu se nalazi pogled s komponentama koje omogućuju unos novog proizvoda.
- * @author Kristian Knežević
+ * @author Kristian Knezevic
  *
  */
 
@@ -19,7 +19,7 @@ public class NewProductsForm extends JFrame{
 		
 		super("Unos proizvoda");
 		setSize(500, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);

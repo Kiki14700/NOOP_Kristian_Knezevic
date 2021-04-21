@@ -1,24 +1,22 @@
 package view_pckg;
 
-import java.awt.BorderLayout;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
+
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
+
 import javax.swing.JTable;
+
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+
 
 import controller_pckg.Controller;
 import model_pckg.User;
 
 /**
- * Klasa u kojoj su tablično prikazani podatci o registriranim korisnicima
- * @author Kristian Knežević
+ * Klasa u kojoj su tablicno prikazani podatci o registriranim korisnicima
+ * @author Kristian Knezevic
  *
  */
 
@@ -27,16 +25,17 @@ public class EmployeesForm extends JFrame{
 	
 	JTable table;
 	
+	
 	/**
 	 * Tablica s podatcima stvorena u kontruktoru.
 	 * Za izradu tablice potrebnno je izraditi redove i stupce.
-	 * Podatci su dohvaćeni iz baze podataka u klasi Controller, spremljeni u listu koja je proslijeđena do klase EmplyeesForm gdje su i prikazani.
+	 * Podatci su dohvaceni iz baze podataka u klasi Controller, spremljeni u listu koja je proslijedena do klase EmplyeesForm gdje su i prikazani.
 	 */
 	
 	public EmployeesForm() {
 		super("Zaposlenici");
 		setSize(700, 500);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
@@ -66,8 +65,9 @@ public class EmployeesForm extends JFrame{
 		
 		
 		setLayout(new FlowLayout());
-		
 	}
+	
+	
 	
 	
 	

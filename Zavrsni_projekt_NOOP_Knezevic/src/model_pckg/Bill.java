@@ -4,9 +4,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 /**
- * Model računa kupnje.
- * Model računa kupnje sadrži listu kupljenih proizvoda, datum ispisa računa, identifikacijsku oznaku korisnika sustava(trgovca) koji je ispisao račun, ime kupca, opis načina plaćanja(gotovina, kartica...) i ukupnu cijenu. 
- * @author Kristian Knežević
+ * Model racuna kupnje.
+ * Model racuna kupnje sadrzi listu kupljenih proizvoda, datum ispisa racuna, identifikacijsku oznaku korisnika sustava(trgovca) koji je ispisao racun, ime kupca, opis nacina placanja(gotovina, kartica...) i ukupnu cijenu. 
+ * @author Kristian Knezevic
  *
  */
 public class Bill {

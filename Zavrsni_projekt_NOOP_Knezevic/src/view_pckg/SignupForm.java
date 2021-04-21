@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 /**
  * Klasa za stvaranje prozora(okvira) na kojemu se nalazi pogled s komponentama za registraciju novog korisnika. 
- * @author Kristian Knežević 
+ * @author Kristian Knezevic 
  *
  */
 public class SignupForm extends JFrame{
@@ -18,7 +18,7 @@ public class SignupForm extends JFrame{
 		
 		super("SignUp");
 		setSize(665, 500);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);

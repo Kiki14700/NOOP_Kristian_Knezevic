@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 /**
  * Klasa glavnog prozora(okvira) na kojemu se nalazi glavni pogled za prodaju i Menu Bar.
- * @author Korisnik
+ * @author Kristian Knezevic
  *
  */
 public class MainFrame extends JFrame{
