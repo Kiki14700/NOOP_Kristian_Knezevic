@@ -48,12 +48,16 @@ public class NewProductsPanel extends JPanel{
 	
 	private Product product;
 	
+	
+	
 	public NewProductsPanel() {
 		createComps();
 		layoutComps();
 		designComps();
 		activate();
 		product = new Product();
+		
+		
 		
 	}
 	
@@ -164,6 +168,7 @@ public class NewProductsPanel extends JPanel{
 					product.dateOfArrival = selectedDate;
 					
 					Controller.inputProducts(product);
+					Controller.refreshWindow();
 				}
 				
 				

@@ -22,6 +22,7 @@ import model_pckg.User;
 import view_pckg.BuyerReviewerForm;
 import view_pckg.DateReviewerForm;
 import view_pckg.EmployeesForm;
+import view_pckg.FormPanel;
 import view_pckg.LoginForm;
 import view_pckg.MainFrame;
 import view_pckg.NewProductsForm;
@@ -59,7 +60,7 @@ public class Controller {
 	public static NewProductsForm currentProductForm;
 	public static User currentUser;
 	private static DataBase db;
-	
+	private static MainFrame mf;
 	
 	
 	/**
@@ -106,7 +107,7 @@ public class Controller {
 			
 			@Override
 			public void run() {
-				new MainFrame();
+				mf = new MainFrame();
 				
 			}
 		});
@@ -389,6 +390,11 @@ public class Controller {
 	public static ArrayList<String> getBuyerInfo(String buyerName){
 		
 		return db.getBuyerInfo(buyerName);
+	}
+	
+	public static void refreshWindow() {
+		mf.dispose();
+		mainframeView();
 	}
 	
 }

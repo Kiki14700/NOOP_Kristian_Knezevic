@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.JTableHeader;
 
 import controller_pckg.Controller;
 import model_pckg.User;
@@ -24,7 +24,6 @@ public class EmployeesForm extends JFrame{
 
 	
 	JTable table;
-	
 	
 	/**
 	 * Tablica s podatcima stvorena u kontruktoru.
@@ -49,9 +48,11 @@ public class EmployeesForm extends JFrame{
 		model.addColumn("Address");
 		model.addColumn("Date of Birth");
 		
-		int cnt = 0;
+		
+		model.insertRow(0, new Object[]{"Korisnicko ime", "Ime", "Prezime", "Broj telefone", "Adresa", "Datum rođenja"});
+		int cnt = 1;
 		for ( User u : Controller.getUser()) {
-			model.insertRow(0, new Object[]{u.username, u.name, u.surname, u.phoneNum, u.address, u.dateOfBirth});
+			model.insertRow(1, new Object[]{u.username, u.name, u.surname, u.phoneNum, u.address, u.dateOfBirth});
 			cnt++;
 		}
 		table.setRowHeight(this.getHeight()/(cnt + 1));
